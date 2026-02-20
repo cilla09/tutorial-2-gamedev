@@ -1,32 +1,129 @@
 [gd_scene format=3 uid="uid://bubbyvfgdow4i"]
 
-[ext_resource type="Script" uid="uid://bsuv2svmaqypq" path="res://scenes/PlatformBlue.gd" id="1_sp0w3"]
-[ext_resource type="PackedScene" uid="uid://y5a4e3ajuy2r" path="res://scenes/StonePlatform.tscn" id="2_qe5b6"]
+[ext_resource type="Script" uid="uid://bbwwm15h4psg1" path="res://scenes/NextLevelButton.gd" id="1_qe5b6"]
+[ext_resource type="Script" uid="uid://bps2ad3ijau63" path="res://scenes/PlatformGreen.gd" id="1_sp0w3"]
+[ext_resource type="Script" uid="uid://k3hob54qie72" path="res://scenes/Level2.gd" id="1_xpq2v"]
+[ext_resource type="PackedScene" uid="uid://b5a4ynav86ee6" path="res://scenes/Meteor.tscn" id="2_4p0dt"]
+[ext_resource type="Script" uid="uid://cjhh401ty70jr" path="res://scenes/PlatformMeteor.gd" id="2_qwp14"]
+[ext_resource type="PackedScene" uid="uid://4dcae4gpc0p3" path="res://scenes/SnowPlatform.tscn" id="2_sp0w3"]
+[ext_resource type="Texture2D" uid="uid://22djkljkqqiy" path="res://assets/bg3.png" id="2_v8268"]
 [ext_resource type="PackedScene" uid="uid://2l8dbfsh07v1" path="res://scenes/GreenShip.tscn" id="3_sp0w3"]
 [ext_resource type="Script" uid="uid://x2rdmjyr1ttw" path="res://scenes/ObjectiveArea.gd" id="4_qwp14"]
+[ext_resource type="Texture2D" uid="uid://2d3fmw1v36aa" path="res://assets/flag.png" id="9_0jmjk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sp0w3"]
+friction = 5.0
+rough = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qe5b6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4p0dt"]
+friction = 3.0
+rough = true
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(138.75, 79)
 
 [node name="Level2" type="Node" unique_id=832108525]
+script = ExtResource("1_xpq2v")
 
-[node name="PlatformBlue" type="Node2D" parent="." unique_id=1028510209]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1763982448]
+position = Vector2(568, 328)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("2_v8268")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1146030193]
+
+[node name="WinUI" type="Control" parent="CanvasLayer" unique_id=1233013701]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.4599915
+offset_top = -11.372009
+offset_right = 7.4599915
+offset_bottom = 11.372009
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/WinUI" unique_id=1650357715]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = -35.0
+offset_right = 37.0
+offset_bottom = -12.0
+grow_horizontal = 2
+text = "You Won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/WinUI" unique_id=1269559125]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -15.5
+offset_right = 45.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "To Be Continued..."
+script = ExtResource("1_qe5b6")
+
+[node name="PlatformMeteor" type="AnimatableBody2D" parent="." unique_id=237421269]
+script = ExtResource("2_qwp14")
+
+[node name="StonePlatform4" parent="PlatformMeteor" unique_id=1309648374 instance=ExtResource("2_4p0dt")]
+position = Vector2(106, 307)
+
+[node name="StonePlatform" parent="PlatformMeteor" unique_id=2114189252 instance=ExtResource("2_4p0dt")]
+position = Vector2(-36, 236)
+
+[node name="StonePlatform2" parent="PlatformMeteor" unique_id=667465797 instance=ExtResource("2_4p0dt")]
+position = Vector2(-36, 307)
+
+[node name="StonePlatform3" parent="PlatformMeteor" unique_id=830683881 instance=ExtResource("2_4p0dt")]
+position = Vector2(35, 307)
+
+[node name="PlatformGreen" type="Node2D" parent="." unique_id=1028510209]
 position = Vector2(35, 565)
 script = ExtResource("1_sp0w3")
 
-[node name="StonePlatform" parent="PlatformBlue" unique_id=964098601 instance=ExtResource("2_qe5b6")]
+[node name="StonePlatform3" parent="PlatformGreen" unique_id=397256131 instance=ExtResource("2_sp0w3")]
+physics_interpolation_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_sp0w3")
 
-[node name="StonePlatform2" parent="PlatformBlue" unique_id=1594265889 instance=ExtResource("2_qe5b6")]
-position = Vector2(70, 0)
+[node name="StonePlatform" parent="PlatformGreen" unique_id=1679990019 instance=ExtResource("2_sp0w3")]
+physics_interpolation_mode = 1
+position = Vector2(71, 0)
+physics_material_override = SubResource("PhysicsMaterial_qe5b6")
 
 [node name="GreenShip2" parent="." unique_id=579539952 instance=ExtResource("3_sp0w3")]
+unique_name_in_owner = true
 position = Vector2(71, 474)
+physics_material_override = SubResource("PhysicsMaterial_4p0dt")
 
 [node name="ObjectiveArea" type="Area2D" parent="." unique_id=779178061]
 script = ExtResource("4_qwp14")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveArea" unique_id=670694693]
-position = Vector2(1078, 42)
+position = Vector2(1072, 49)
 shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="ObjectiveArea" unique_id=1859917248]
+position = Vector2(1072, 49)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("9_0jmjk")
 
 [connection signal="body_entered" from="ObjectiveArea" to="ObjectiveArea" method="_on_ObjectiveArea_body_entered"]
